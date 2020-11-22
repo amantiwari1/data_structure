@@ -1,2 +1,2 @@
 language = "undefined"
-run = "python Array/array1.py"
+run = "python Array/reserve_string.py"
