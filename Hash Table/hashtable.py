@@ -19,18 +19,27 @@ class HashTable:
     for items in self.data[address]:
       if items[0] == key:
         return items[1]
-    return "Not Found"
+    return "Not Found"  
+
+  def keys(self):
+    array_keys = []
+    for i in self.data:
+      if i:
+        array_keys.append(i[0][0])
+
+    return array_keys
     
 
     
       
 
-hashtable = HashTable(50)
+hashtable = HashTable(500)
 
 hashtable.set('dad', 45)
 hashtable.set('mon', 54)
 hashtable.set('sis', 134)
 hashtable.set('bro', 4)
-print(hashtable.get('sis'))
+print(hashtable._hash('4'))
+print(hashtable.keys())
 
 

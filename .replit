@@ -1,2 +1,2 @@
 language = "undefined"
-run = "python 'Hash Table/hashtable.py'"
+run = "python 'Hash Table/questions.py'"
