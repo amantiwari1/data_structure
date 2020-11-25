@@ -1,11 +1,11 @@
-class LinkedList:
+class DoubleLinkedList:
   def __init__(self, value):
     self.head = self.Node(value)
     self.tail = self.head
     self.length = 1;
 
   def Node(self, value):
-    return {"value": value, "next":None}
+    return {"value": value, "next":None, "prev":None}
   
   
   def get(self):
@@ -20,6 +20,7 @@ class LinkedList:
   
   def append(self, value):
     newNodes = self.Node(value)
+    newNodes["prev"] = self.tail
     self.tail["next"] = newNodes
     self.tail = newNodes
     self.length += 1
@@ -27,6 +28,7 @@ class LinkedList:
   def prepend(self, value):
     newNodes = self.Node(value)
     newNodes['next'] = self.head
+    self.head["prev"] = newNodes
     self.head = newNodes
     self.length += 1   
 
@@ -35,13 +37,14 @@ class LinkedList:
       return self.prepend(value)
     elif index >= self.length:
       return self.append(value)
-    pre = self.head
+    leader = self.head
     for i in range(1,index):
-      pre = pre["next"]
-    aft = pre["next"]
+      leader = leader["next"]
+    follower = leader["next"]
     newNodes = self.Node(value)
-    newNodes["next"] = aft
-    pre["next"] = newNodes
+    newNodes["prev"] = leader
+    newNodes["next"] = follower
+    leader["next"] = newNodes
     self.length += 1
 
   def delete(self, index):
@@ -53,38 +56,34 @@ class LinkedList:
     pre["next"] = aft
     del unwantedNodes
     self.length += 1
-  
+
   def reverse(self):
-    first = self.head
-    second = first["next"]
-    self.tail = self.head
-    while second:
-      temp = second["next"] # {...}
-
-      # { value:second, next: first }
-      second["next"] = first
-      # added to second or so on value to first
-      first = second
-      # remove the value which already added above it to second
-      second = temp
-    self.head["next"] = None
-    self.head = first
-    return self.get()
-    
+    arr = []
+    currentNodes = self.tail
+    while currentNodes["prev"] != None:
+      arr.append(currentNodes["value"])
+      currentNodes = currentNodes["prev"]
+    arr.append(currentNodes["value"])
+    return arr
 
 
 
 
-
-
-linked = LinkedList(10)
+linked = DoubleLinkedList(10)
 linked.append(5)
 linked.append(16) 
-
+linked.append(14) 
+linked.append(14) 
+linked.append(13) 
+linked.prepend(1)
 linked.prepend(3) 
 linked.insert(12,99)
 linked.insert(0,9)
 linked.insert(5,55)
+linked.insert(6,55)
 linked.delete(5)
 print(linked.get())
+linked.delete(6)
+print(linked.get())
+linked.delete(6)
 print(linked.reverse())
