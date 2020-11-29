@@ -18,13 +18,16 @@ class QueueLinkedList:
       
     self.length+=1
 
-  def dequeue(self, value):
-    pass
+  def dequeue(self):
+    self.first = self.first["next"]
 
 queue = QueueLinkedList()
 queue.enqueue(1)
 queue.enqueue(2)
 queue.enqueue(3)
+print(queue.first)
+queue.dequeue()
+queue.dequeue()
 print(queue.first)
 print(queue.last)
     
