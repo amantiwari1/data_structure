@@ -11,6 +11,8 @@ class Graph:
 
   def get(self):
     return self.adjacentList
+    self.numberOfNodes += 1
+
   
   def addEdge(self,node1, node2):
     self.adjacentList[node2].append(node1)
