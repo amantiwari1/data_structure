@@ -1,3 +1,3 @@
 language = "undefined"
-run = "python Tree/binarysearchtree.py"
-# run = "python Linked_List/DoubleLinkedList.py"
+#run = "python Tree/binarysearchtree.py"
+run = "python Graphs/graph.py"
