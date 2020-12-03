@@ -48,6 +48,22 @@ class BinarySearchTree:
   def get(self):
     return json.dumps(self.root, indent=2)
 
+  def BFS(self):
+    currentNodes = self.root
+    lists= []
+    queue = []
+    queue.append(currentNodes)
+    while len(queue) > 0:
+      currentNodes = queue[0]
+      del queue[0]
+      lists.append(currentNodes['value'])
+      if currentNodes['left']:
+        queue.append(currentNodes['left'])  
+      if currentNodes['right']:
+        queue.append(currentNodes['right'])  
+
+    return lists
+
 
 tree = BinarySearchTree()
 
@@ -58,4 +74,5 @@ tree.insert(20)
 tree.insert(170)
 tree.insert(15)
 tree.insert(1)
-print(tree.lookup(20))
+
+print(tree.BFS())
