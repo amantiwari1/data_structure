@@ -3,7 +3,6 @@ class ListNode(object):
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
-        
 class Solution(object):
     def addTwoNumbers(self, l1, l2):
         """
@@ -15,10 +14,9 @@ class Solution(object):
             return ListNode(0)
         a = l1.val
         b = l2.val
-        c = 0
-
-        if a+b >= 10:
-            c = 1
+        c = (a+b)//10
+        
+        
         nodes = ListNode((a+b)%10)
         stores = nodes
         l1 = l1.next
@@ -34,10 +32,7 @@ class Solution(object):
                 l2= l2.next
           
             nodes.next = ListNode((a+b+c)%10)
-            if a+b+c >= 10:
-                c = 1
-            else:
-                c = 0
+            c = (a+b+c)//10
             nodes = nodes.next
                 
         if nodes.val == 0 or a+b >= 10:
